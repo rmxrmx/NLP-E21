@@ -18,9 +18,11 @@ class Corpus:
         for c_text in self.corpus_list:
             text = c_text.text
 
-            sentences = re.split(r'[.|?|!]', text)
-
+            sentences = re.split(r'[.?!]', text)
             c_text.sentences = sentences
+
+    # def tokenize_text(self):
+
 
 
 class CorpusText:
