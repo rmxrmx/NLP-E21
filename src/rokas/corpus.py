@@ -14,7 +14,6 @@ class Corpus:
             read_file.close()
 
 
-
 class CorpusText:
     def __init__(self, identity, text, tokenization, sentences):
         self.id = identity
