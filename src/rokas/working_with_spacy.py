@@ -18,9 +18,8 @@ def corpus_loader(folder: str) -> List[str]:
     """
     text_list = []
     for file in os.listdir(folder):
-        read_file = open(os.path.join(folder, file), 'r')
-        text_list.append(read_file.read())
-        read_file.close()
+        with open(os.path.join(folder, file), 'r') as of:
+            text_list.append(of.read())
     return text_list
 
 
