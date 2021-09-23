@@ -7,9 +7,6 @@ nlp = spacy.load("en_core_web_sm")
 doc = nlp("This is an English text")
 
 
-# print(dir(doc))
-
-
 def corpus_loader(folder: str) -> List[str]:
     """
     A corpus loader function which takes in a path to a
@@ -60,18 +57,16 @@ def calculate_mdd(text):
     t_sum = 0
     t_size = 0
     doc = nlp(text)
-    for idx, token in enumerate(doc):
-        for idx2, ft in enumerate(doc):
-            if ft == token.head:
-                dist = abs(idx - idx2)
-                break
 
+    for token in doc:
+        dist = abs(token.i - token.head.i)
         t_sum += dist
         if dist != 0:
             t_size += 1
+        print(token, token.head, dist)
 
     mdd = t_sum / t_size
     return mdd
 
 
-print(calculate_mdd(loaded_corpus[0]))
+print(calculate_mdd("The reporter who attacked the senator admitted the error."))
