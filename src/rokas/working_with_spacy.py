@@ -55,9 +55,23 @@ def calculate_pos(text):
 training_path = os.path.join("..", "..", "syllabus", "classes", "data", "train_corpus")
 loaded_corpus = corpus_loader(training_path)
 
-# lemmatize texts
-# for idx, text in enumerate(loaded_corpus[:20]):
-#     lemmatized = lemmatize_text(text)
-#     loaded_corpus[idx] = lemmatized
-#
-# print(loaded_corpus[0])
+
+def calculate_mdd(text):
+    t_sum = 0
+    t_size = 0
+    doc = nlp(text)
+    for idx, token in enumerate(doc):
+        for idx2, ft in enumerate(doc):
+            if ft == token.head:
+                dist = abs(idx - idx2)
+                break
+
+        t_sum += dist
+        if dist != 0:
+            t_size += 1
+
+    mdd = t_sum / t_size
+    return mdd
+
+
+print(calculate_mdd(loaded_corpus[0]))
