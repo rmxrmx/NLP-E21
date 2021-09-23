@@ -1,6 +1,7 @@
 import spacy
 from typing import List
 import os
+from collections import Counter
 
 nlp = spacy.load("en_core_web_sm")
 doc = nlp("This is an English text")
@@ -37,6 +38,20 @@ def lemmatize_text(text):
     return new_text
 
 
+def text_to_pos(text):
+    parts = ""
+    doc = nlp(text)
+    for token in doc:
+        parts += token.pos_ + " "
+    return parts
+
+
+def calculate_pos(text):
+    parts = text_to_pos(text)
+    c = Counter(parts.split())
+    return c
+
+
 training_path = os.path.join("..", "..", "syllabus", "classes", "data", "train_corpus")
 loaded_corpus = corpus_loader(training_path)
 
@@ -46,4 +61,3 @@ loaded_corpus = corpus_loader(training_path)
 #     loaded_corpus[idx] = lemmatized
 #
 # print(loaded_corpus[0])
-
