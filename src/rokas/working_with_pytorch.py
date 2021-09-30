@@ -46,11 +46,23 @@ def doc_freq(documents: List[List[str]]) -> dict:
     """
     Takes in a list of documents which each is a list of tokens and return a dictionary of frequencies for each token over all the documents. E.g. {"Aarhus": 20, "the": 2301, ...}
     """
-    c = Counter()
+    # c = Counter()
+    # for l in documents:
+    #     c.update(l)
+    #
+    # return dict(c)
+    #
+    # alternative implementation
+    c = {}
     for l in documents:
-        c.update(l)
-    return dict(c)
+        l_set = set(l)
+        for key in l_set:
+            if key in c:
+                c[key] += 1
+            else:
+                c[key] = 1
+    return c
 
 
 print(term_freq(["testing", "these", "tokens", "these"]))
-print(doc_freq([["testing", "these", "tokens"], ["are", "these", "tokens", "working", "?"]]))
+print(doc_freq([["testing", "these", "these", "tokens"], ["are", "these", "tokens", "working", "?"]]))
