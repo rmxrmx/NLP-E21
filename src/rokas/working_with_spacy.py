@@ -63,10 +63,11 @@ def calculate_mdd(text):
         t_sum += dist
         if dist != 0:
             t_size += 1
-        print(token, token.head, dist)
+        # print(token, token.head, dist)
 
     mdd = t_sum / t_size
     return mdd
 
 
 print(calculate_mdd("The reporter who attacked the senator admitted the error."))
+
