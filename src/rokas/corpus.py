@@ -1,7 +1,6 @@
 import os
 import re
 
-
 class Corpus:
     def __init__(self, train_path):
         self.corpus_list = []
@@ -22,7 +21,6 @@ class Corpus:
             c_text.sentences = sentences
 
     # def tokenize_text(self):
-
 
 
 class CorpusText:
